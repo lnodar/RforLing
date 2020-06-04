@@ -188,12 +188,6 @@ tail(music)
 music$songs
 ```
 
-&&add another line WITH A TRICK
-&&can you see while this will RUIN EVERYTHING??? 
-
-
-
-
 ## 1.5 Some Tips
 
 Programming languages are persnickety. As you get started on your R journey, know this: you're going to see a LOT of error messages. Going back to figure out what exactly went wrong for the twelfth time is exhausting, but it's worth it for the sweet sweet feeling of victory that comes when it does finally work. 
