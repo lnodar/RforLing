@@ -1,0 +1,20 @@
+1)
+General overview: installing packages, setting wd, loading excel/csv data, looking at data 
+Organizing data: sorting and filtering, relabelling, removing NAs, other prep work; tidyverse 
+Look back over R wkshp stuff and draw from that 
+2) 
+Interacting with PRAAT: loading info from TextGrids and .wav files into a dataframe, editing .wav files (low-pass filter, etc); either textgRid or rPraat package
+Package emuR for creating/analyzing a speech database; allows for sorting by very specific phonetic/intonational/etc criteria 
+3)
+Exploratory stuff: looking for what’s worth paying attention to
+Basic statistics: mean and variance; looking at/testing for distributions
+4) 
+Stats 2: t-tests, f-tests, chi-sq, anova
+Stats 3: OLS regression
+5)
+Stats 4: logistic regression
+Stats 5: LMM regression 
+6) 
+Visualization 1: ggplot2 basics, geoms & aesthetics, how to set up scatterplots, histograms, bar charts, etc
+Visualization 2: making vowel charts and other charts specific to/important for ling in ggplot2
+Visualization 3: making nicer charts in ggplot2, publication-ready tables in stargazer 

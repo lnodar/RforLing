@@ -1,0 +1,39 @@
+---
+title: "Introduction"
+author: "Leah Nodar"
+date: "May 20, 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction {-}
+
+You know you wanna use R. I know you do. You know you do. It's &&better. Besides, it's sexy af. 
+
+But it's undeniably daunting. R can pull off these nuanced analyses on piles and piles of data exactly because it's a for-real programming language. And if you've spent the last years or decades learning the ins and outs of negative concord or voice onset time or Grimm's Law or whatever, then it's unlikely you've put the same amount of time into learning programming. Which, y'know, fair. You're a linguist. (Or else reading this book as a voyeur, I suppose.) 
+
+The tragedy of mortality is that we can't learn every damn thing. I'm gonna argue, though, that it's worthwhile to pick up at least a little bit of R, even if that's a sidestep from your immediate interests. The basic reason is this: R can automate some of the tedious busy-work tasks. Putting time in to learn R now frees up time in the future that you would have spent adding diphthong glides to a graph one line at a time, or going into every spreadsheet cell with an NA to switch it to 0, or hunting down every single time you mentioned the standard deviation because it's actually 3.97 ms, not 3.79.
+
+&&obviously not teaching linguistics here. Or stats, for that matter. Just coding.
+## Structure of this Book
+
+Chapter One focuses on the basics of R itself, on loading in and accessing your data, and on the preliminary set-up steps that you normally want to take before embarking on a new project. People familiar with R can skip it, but if you don't already know R, I recommend you read it, even if all you ultimately want is just one teeny-tiny itsy-bitsy little graph. Otherwise you may get this graph to work, but not an extremely similar graph with a different type of variable next week. It's your life, though, so follow your heart I guess. 
+
+Chapter Two is &&
+
+## Datasets
+
+&&from LanguageR; acknowledge Baayen 
+
+## Getting R and RStudio
+
+Download R studio; tries to help with the capital letters thing; can eat a turkey without a plate, but if you have a plate why would you not use it
+Download R: https://www.r-project.org/
+Install R Studio: https://rstudio.com/products/rstudio/download/
+
+Using R in console vs making a script 
+
+Comments

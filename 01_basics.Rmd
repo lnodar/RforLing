@@ -1,0 +1,221 @@
+---
+title: "Basics of R"
+author: "Leah Nodar"
+date: "May 20, 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+# Chapter 1: Basics of R
+
+## 1.1 Orientation
+
+There are three things we need to be able to use in R:
+
+* Stuff
+* Organized stuff
+* Ways of doing things to stuff
+
+"Stuff" in R is called _variables_. These are all the individual sciencey numbers you have from whatever sciencey business you've been up to. They're kinda like nouns. 
+
+"Ways to do stuff" are called _functions_. These always have parentheses following, like "getwd()" or "log()." These are your verbs; the noun goes in the parentheses. 
+
+There are many ways to organize stuff, but the two we'll be starting with are _data frames_ and _vectors_. The first is like a table, and the second is like a single column in a table. These are your... noun phrases? Ok, I'm stretching the analogy, but you put them inside parentheses too, when you want to do something to them. 
+
+We'll start with functions, because just like verbs, they're what the rest is built around. 
+
+## 1.2 Doing Things (Functions)
+
+Functions do something. That's pretty broad, so let's have an examples. Some functions do math:
+
+```{r ex001}
+sqrt(289)
+```
+
+The function here is "sqrt()" (stands for "square root"). The number, "289," is called the _argument_ of the function: the stuff that needs to be in the parenthesis for it to work properly. For this function, there has to be some number in the parentheses. You can take the square root of zero, but you can't take the square root of nothing!
+
+```{r ex002}
+sqrt(0)
+sqrt()
+```
+
+The argument for a mathy function is usually a number or a set of numbers. Some other functions do more programming things that interact with your computer. For example, this function tells you the working directory you're currently in, which means basically the folder that R is looking at:
+
+```{r ex003}
+getwd()
+```
+
+If you set the working directory to a particular folder, you can access anything in that folder more easily. I usually make a folder for each project with whatever data I'm using in it, save my R script there, and make it my working directory. This next line sets the working directory, and it's the first line of every script I write:
+
+```{r ex004}
+setwd("C:/Users/Leah/Desktop/RforLing")
+```
+
+Well, obviously I don't put everything in a file called "RforLing," I change that to whatever file I'm using. And since your name probably isn't Leah, you'll need to change that too. (Though if it is -- hey, sup? Killer name, amirite?)
+
+If you've already made a folder, you can get the path to that folder by right-clicking it and looking for "properties." Be careful of slashes, though -- if you copy and paste you'll need to go through and change the \'s to /'s. 
+
+Here's at another really important function: the function for getting more functions. See, one rad thing about R is that since it's free and open-source, all kinds of people make all kinds of functions for it. In fact, there are way more functions than any one person could possibly use. I mean, we'll want specialized linguistics-related functions later, but we won't be looking at functions made for meteorologists or astronomers or haberdashers, and the person who would want all of those is pretty rare. Besides, trying to download every possible function would eat up a mountain of computer space. So instead, when we download R, we get the fairly minimal "base R," and from there we bring in the packages we want for the specific work we're doing. 
+
+There are two steps to using a package: first downloading it to your computer from the internet, and second taking it into R from your computer. You only need to download it once, but you'll need to reload it into R every time you close R and then open it again. 
+
+Let's go ahead and download the "tidyverse" package, which is a generally handy package full of functions for working with data. It'll make our lives easier later. 
+
+```{r ex005}
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+Yes, that's right -- you are required to include quote marks around the package name for the first one, and required to have no quotes around the name for the second one. This is just to be irritating, afaik. But there are more general rules about quote marks, and we'll get into those in the next section. 
+
+## 1.3 Stuff (Variables)
+
+A variable is a name for a blob of data. One of the simplest possible things you can save as a variable is a word, which is the "character" data type. You show that something is a word by putting it in quote marks. You can just write out a word in quote marks, and that will print it in the console, but won't save it as a variable:
+
+```{r ex006}
+"metathesis"
+```
+
+To save it as a variable, you need to assign it a name. This _won't_ print the variable out, it'll just save it. If you go look in the "environment" window in the upper right corner of RStudio, though, you should see it pop up there.
+
+```{r ex 007}
+nerdword <- "metathesis"
+```
+
+The "<-" there is the symbol that tells R "hey slap this name on this thing." If we want to see the actual thing, we just type in the name, and R connects the dots.
+
+```{r ex008}
+nerdword
+```
+
+Once we have a word saved as a variable, we can use that variable as an argument for functions. For example, the first function below counts how many letters there are in a variable, and the second repeats the variable however many times. (That means that the first function has just one argument, the variable, while the second fuction takes two, the variable and the number of times you want it repeated.) 
+
+```{r ex009}
+str_count(nerdword)
+rep(nerdword, 7)
+```
+
+We can change the thing saved under a particular name anytime.
+
+```{r ex010}
+nerdword <- "monophthongization"
+nerdword
+str_count(nerdword)
+rep(nerdword, 7)
+```
+
+Note that R is not bright enough to actually understand these variable names itself. You can totally name a number "nerdword," and R would be fine with that. The names are just to help us humans follow along. 
+
+Speaking of numbers, the way you tell R that incoming data is a numeric data is by _not_ putting it in quotes. This works much the same way as words above: if you just type the number, it gets printed out but not saved. To save a number as a variable, assign it a name with "<-". 
+
+```{r ex011}
+nerdnumber <- 2.718
+nerdnumber
+```
+
+Then it's easy to stick in as the argument for a function.
+
+```{r ex012}
+log(nerdnumber)
+```
+
+## 1.4 Organized Stuff (Vectors and Dataframes) 
+
+That's all well and good, but I'd say it's damn rare for anyone to have a research project involving a single word or number. We generally have a slew of 'em. For now, let's examine an extremely simple mini dataset that I constructed by asking my mom, dad, and cat to each name a song and rate it. 
+
+* Mom selects "You are My Sunshine" and rates it 6/10.
+* Dad selects "The MASH Theme" and rates it 7/10.
+* Fred selects "I Did It My Way" and rates it 9/10. 
+
+Now, we could put these into individual variables. I'll start at "a" for songs, and "q" for ratings.
+
+```{r ex013}
+a <- "You are My Sunshine"
+b <- "The MASH Theme"
+c <- "I Did It My Way"
+  
+q <- 6
+r <- 7
+s <- 9
+```
+
+But this is not really a helluva lot better. I mean, if you look up in that environment pane, you'll have six new variables there, but they're all disconnected. There's no indication that any of these go together. 
+
+So I'd like to introduce you to a Very Important Function: **c()**. That stands for "concatenate," which is a fancy way of saying "stick these in a group together." The name of that group is a _vector_ -- it's an ordered list of items. Once again, we'll need to save that vector by assigning it its own name. 
+
+```{r ex014}
+songs <- c(a, b, c)
+ratings <- c(q, r, s)
+```
+
+Now we have the slightly magical ability to do things to every variable in the vector at once.
+
+```{r ex015}
+ratings*100
+rep(songs,3)
+```
+
+You don't have to go through the intermediate step of assigning each individual data point a name. Say I want to create a vector of nominators. I can just concatenate the names directly.
+
+```{r ex016}
+nominator=c("Mom","Dad","Fred")
+paste0(songs," is ",nominators,"'s selected song.")
+```
+
+Now, of course, the next thing we want to do is get all these vectors -- which are essentially columns -- organized into one big dataframe. The specific kind of dataframe we're using here is called a _tibble_, and we got it from that "tidyverse" package we downloaded back at the beginning of this chapter. 
+
+```{r ex017}
+music=tibble(songs,ratings,nominator)
+music
+```
+
+Ta daa! Note that the songs, ratings, and nominator line up correctly. That's because, like I said, vectors are _ordered_. If you're putting vectors together in a table like this, be careful that you keep them in the right order. 
+
+Admittedly, you're probably not gonna end up building dataframes in R like this. It's too pesky. But it's important to understand how they're constructed before we go fiddling with them. (Which we will in the next chapter, on importing data from elsewhere and cleaning it up.)  
+
+Once you have some data, whether you made it or imported it, the first thing you wanna do is look at it. F'real. Especially if it's some big dataset, or it's the first time you're working with it. Always check that your data is loaded in correctly before, say, doing a bunch of complicated stats on it. 
+
+The functions "head()" and "tail()" are a little silly here, because the dataset is so small. Later we'll look at a bigger dataset, and see that those show us the first six and last six rows, respectively.
+
+```{r ex018}
+summarize(music)
+str(music)
+head(music)
+tail(music)
+music$songs
+```
+
+&&add another line WITH A TRICK
+&&can you see while this will RUIN EVERYTHING??? 
+
+
+
+
+## 1.5 Some Tips
+
+Programming languages are persnickety. As you get started on your R journey, know this: you're going to see a LOT of error messages. Going back to figure out what exactly went wrong for the twelfth time is exhausting, but it's worth it for the sweet sweet feeling of victory that comes when it does finally work. 
+
+Two things that are liable to trip you up are punctuation and capitalization. Here's a list of things that are not the same in R:
+
+* thisthing
+* this.thing
+* this_thing
+* ThisThing
+* ThIsThInG
+
+Check exact spelling, especially of abbreviations, and whether the thing you want was written with under_scores or CamelCaps or something else. This is another reason to use RStudio: it will offer suggestions for what you might be typing. You can just go to the right one and hit "enter" and have the exact spelling filled out for you. 
+
+There are two different ways to say "help me" in R: "?" and "??" (yes, really). The first is if you know the name of the function you're interested in, but you're not sure of maybe what exactly it does or what arguments it takes. The two-question-mark version is if you're not sure about what function you want -- you put in the topic you're interested in, and it'll give you functions that match that topic. Both of these pop up in the lower right pane in RStudio. 
+
+There's also apropos(), which gives you every function that starts with whatever letters you mention. Super handy.
+
+```{r ex020}
+?head()
+??permutations 
+apropos(sum)
+```
+
+A final quick tip: google your error messages! Trust me, _someone_ else out there has had the same problem, and usually the internet has already taken a stab at it. 
