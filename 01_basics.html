@@ -274,9 +274,9 @@ nerdnumber</code></pre>
 <h2>1.4 Organized Stuff (Vectors and Dataframes)</h2>
 <p>That’s all well and good, but I’d say it’s damn rare for anyone to have a research project involving a single word or number. We generally have a slew of ’em. For now, let’s examine an extremely simple mini dataset that I constructed by asking my mom, dad, and cat to each name a song and rate it.</p>
 <ul>
-<li>Mom selects _ and rates it _.</li>
-<li>Dad selects _ and rates it _.</li>
-<li>Fred selects _ and rates it _.</li>
+<li>Mom selects “You are My Sunshine” and rates it 6/10.</li>
+<li>Dad selects “The MASH Theme” and rates it 7/10.</li>
+<li>Fred selects “I Did It My Way” and rates it 9/10.</li>
 </ul>
 <p>Now, we could put these into individual variables. I’ll start at “a” for songs, and “q” for ratings.</p>
 <pre class="r"><code>a &lt;- &quot;You are My Sunshine&quot;
@@ -311,13 +311,33 @@ music</code></pre>
 ## 2 The MASH Theme            7 Dad      
 ## 3 I Did It My Way           9 Fred</code></pre>
 <p>Ta daa! Note that the songs, ratings, and nominator line up correctly. That’s because, like I said, vectors are <em>ordered</em>. If you’re putting vectors together in a table like this, be careful that you keep them in the right order.</p>
+<p>Admittedly, you’re probably not gonna end up building dataframes in R like this. It’s too pesky. But it’s important to understand how they’re constructed before we go fiddling with them. (Which we will in the next chapter, on importing data from elsewhere and cleaning it up.)</p>
+<p>Once you have some data, whether you made it or imported it, the first thing you wanna do is look at it. F’real. Especially if it’s some big dataset, or it’s the first time you’re working with it. Always check that your data is loaded in correctly before, say, doing a bunch of complicated stats on it.</p>
+<p>The functions “head()” and “tail()” are a little silly here, because the dataset is so small. Later we’ll look at a bigger dataset, and see that those show us the first six and last six rows, respectively.</p>
+<pre class="r"><code>summarize(music)</code></pre>
+<pre><code>## # A tibble: 1 x 0</code></pre>
+<pre class="r"><code>str(music)</code></pre>
+<pre><code>## tibble [3 x 3] (S3: tbl_df/tbl/data.frame)
+##  $ songs    : chr [1:3] &quot;You are My Sunshine&quot; &quot;The MASH Theme&quot; &quot;I Did It My Way&quot;
+##  $ ratings  : num [1:3] 6 7 9
+##  $ nominator: chr [1:3] &quot;Mom&quot; &quot;Dad&quot; &quot;Fred&quot;</code></pre>
+<pre class="r"><code>head(music)</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   songs               ratings nominator
+##   &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;    
+## 1 You are My Sunshine       6 Mom      
+## 2 The MASH Theme            7 Dad      
+## 3 I Did It My Way           9 Fred</code></pre>
+<pre class="r"><code>tail(music)</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   songs               ratings nominator
+##   &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;    
+## 1 You are My Sunshine       6 Mom      
+## 2 The MASH Theme            7 Dad      
+## 3 I Did It My Way           9 Fred</code></pre>
+<pre class="r"><code>music$songs</code></pre>
+<pre><code>## [1] &quot;You are My Sunshine&quot; &quot;The MASH Theme&quot;      &quot;I Did It My Way&quot;</code></pre>
 </div>
-</div>
-<div id="look-at-the-dataframe" class="section level1">
-<h1>Look at the dataframe</h1>
-<p>summarize(music) str(music) head(music) tail(music) music$songs</p>
-<p>&amp;&amp;add another line WITH A TRICK &amp;&amp;can you see while this will RUIN EVERYTHING???</p>
-<p>&amp;&amp;you’re not gonna build dfs in R ; next time, importing and cleaning data</p>
 <div id="some-tips" class="section level2">
 <h2>1.5 Some Tips</h2>
 <p>Programming languages are persnickety. As you get started on your R journey, know this: you’re going to see a LOT of error messages. Going back to figure out what exactly went wrong for the twelfth time is exhausting, but it’s worth it for the sweet sweet feeling of victory that comes when it does finally work.</p>
@@ -330,8 +350,14 @@ music</code></pre>
 <li>ThIsThInG</li>
 </ul>
 <p>Check exact spelling, especially of abbreviations, and whether the thing you want was written with under_scores or CamelCaps or something else. This is another reason to use RStudio: it will offer suggestions for what you might be typing. You can just go to the right one and hit “enter” and have the exact spelling filled out for you.</p>
-<p>&amp;&amp; ?, ??, and apropos()</p>
-<p>Another quick tip: google your error messages. Trust me, someone else out there has had the same problem, and generally the internet has already taken a stab at it.</p>
+<p>There are two different ways to say “help me” in R: “?” and “??” (yes, really). The first is if you know the name of the function you’re interested in, but you’re not sure of maybe what exactly it does or what arguments it takes. The two-question-mark version is if you’re not sure about what function you want – you put in the topic you’re interested in, and it’ll give you functions that match that topic. Both of these pop up in the lower right pane in RStudio.</p>
+<p>There’s also apropos(), which gives you every function that starts with whatever letters you mention. Super handy.</p>
+<pre class="r"><code>?head()</code></pre>
+<pre><code>## starting httpd help server ... done</code></pre>
+<pre class="r"><code>??permutations 
+apropos(sum)</code></pre>
+<pre><code>## Error in apropos(sum): is.character(what) is not TRUE</code></pre>
+<p>A final quick tip: google your error messages! Trust me, <em>someone</em> else out there has had the same problem, and usually the internet has already taken a stab at it.</p>
 </div>
 </div>
 
