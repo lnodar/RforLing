@@ -178,7 +178,7 @@ Admittedly, you're probably not gonna end up building dataframes in R like this.
 
 Once you have some data, whether you made it or imported it, the first thing you wanna do is look at it. F'real. Especially if it's some big dataset, or it's the first time you're working with it. Always check that your data is loaded in correctly before, say, doing a bunch of complicated stats on it. 
 
-The functions "head()" and "tail()" are a little silly here, because the dataset is so small. Later we'll look at a bigger dataset, and see that those show us the first six and last six rows, respectively.
+The functions "head()" and "tail()" are a bit silly here, because the dataset is so small. Later we'll look at a bigger dataset, and see that those show us the first six and last six rows, respectively.
 
 ```{r ex018}
 summarize(music)
@@ -187,6 +187,8 @@ head(music)
 tail(music)
 music$songs
 ```
+
+
 
 ## 1.5 Some Tips
 
